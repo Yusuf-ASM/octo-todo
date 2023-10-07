@@ -1,0 +1,55 @@
+name: octo_todo
+description: A simple to use todo apps
+
+publish_to: 'none' 
+
+version: 1.0.0
+
+environment:
+  sdk: '>=3.1.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  introduction_screen: ^3.1.12
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_native_splash: ^2.3.3
+  flutter_launcher_icons: ^0.13.1
+  flutter_lints: ^2.0.0
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+  - assets/images/calendar.png
+  - assets/images/time_management.png
+  - assets/images/todo_list.png
+
+flutter_icons:
+  android: true
+  image_path: 'assets/images/android/res/mipmap-xxxhdpi/ic_launcher.png'
+  adaptive_icon_background: 'assets/images/android/res/mipmap-xxxhdpi/ic_launcher_background.png'
+  adaptive_icon_foreground: 'assets/images/android/res/mipmap-xxxhdpi/ic_launcher_foreground.png'
+
+fonts:
+    - family: SFProText
+      fonts:
+        - asset: assets/font/sf-pro-text-light.ttf
+          weight: 300
+        - asset: assets/font/sf-pro-text-regular.ttf
+          weight: 400
+        - asset: assets/font/sf-pro-text-medium.ttf
+          weight: 500
+        - asset: assets/font/sf-pro-text-semibold.ttf
+          weight: 600
+        - asset: assets/font/sf-pro-text-bold.ttf
+          weight: 700
+        - asset: assets/font/sf-pro-text-heavy.ttf
+          weight: 900

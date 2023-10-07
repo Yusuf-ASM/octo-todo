@@ -1,4 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:octo_todo/components/filled_button.dart';
+import 'package:octo_todo/components/outlined_button.dart';
+import 'package:octo_todo/pages/auth/login.dart';
+import 'package:octo_todo/pages/auth/register.dart';
 
 class StartScreenPage extends StatelessWidget {
   const StartScreenPage({super.key});
@@ -33,45 +38,20 @@ class StartScreenPage extends StatelessWidget {
               ),
               Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 32, left: 16, right: 16),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              padding: const MaterialStatePropertyAll(
-                                EdgeInsets.all(12),
-                              ),
-                              backgroundColor: MaterialStatePropertyAll(ThemeData().primaryColor),
-                            ),
-                            child: const Text(
-                              "LOGIN",
-                              style: TextStyle(fontSize: 16, color: Colors.white),
-                            ),
-                            onPressed: () {},
-                          ),
-                        ),
-                      ],
+                  CustomFilledButtom(
+                    text: "LOGIN",
+                    function: () => Navigator.of(context).push(
+                      CupertinoPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 32, left: 16, right: 16),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: OutlinedButton(
-                            style: const ButtonStyle(
-                              padding: MaterialStatePropertyAll(EdgeInsets.all(12)),
-                            ),
-                            child: const Text(
-                              "CREATE ACCOUNT",
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            onPressed: () {},
-                          ),
-                        ),
-                      ],
+                  CustomOutlinedButton(
+                    text: "CREATE ACCOUNT",
+                    function: () => Navigator.of(context).push(
+                      CupertinoPageRoute(
+                        builder: (context) => const RegisterPage(),
+                      ),
                     ),
                   ),
                 ],

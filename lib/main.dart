@@ -1,7 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:octo_todo/pages/home/home.dart';
 import 'package:octo_todo/pages/intro.dart';
 
-void main(List<String> args) {
+bool loginState = false;
+
+void main(List<String> args) async {
+  await Hive.initFlutter();
+
+  await Hive.openBox("Users").then(
+    (value) {
+      if (value.get("test") == null) {
+        value.put("test", "test");
+        value.put("loginState", false);
+        loginState = false;
+      } else {
+        loginState = true;
+      }
+    },
+  );
+
+  await Hive.openBox("Notes").then(
+    (value) {
+      if (value.get("test") == null) {
+        value.put("test", []);
+      }
+    },
+  );
+
   runApp(const Main());
 }
 
@@ -25,7 +51,7 @@ class Main extends StatelessWidget {
         colorSchemeSeed: const Color(0x0090caf9),
       ),
       debugShowCheckedModeBanner: false,
-      home: const IntroPage(),
+      home: loginState ? const HomePage() : const IntroPage(),
     );
   }
 }

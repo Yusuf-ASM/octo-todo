@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:octo_todo/components/auth_textfield.dart';
 import 'package:octo_todo/components/filled_button.dart';
+import 'package:octo_todo/components/snackbar.dart';
+import 'package:octo_todo/pages/auth/logic/login.dart';
 import 'package:octo_todo/pages/auth/register.dart';
+import 'package:octo_todo/pages/home/home.dart';
 
 final TextEditingController usernameController = TextEditingController();
 final TextEditingController passwordConstroller = TextEditingController();
@@ -42,13 +45,31 @@ class LoginPage extends StatelessWidget {
                 ),
                 AuthTextField(
                   controller: passwordConstroller,
-                  password: false,
+                  password: true,
                   labelText: "Password",
                   hintText: "Enter your Password",
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 58),
-                  child: CustomFilledButtom(text: "Login", function: () {}),
+                  padding: const EdgeInsets.only(top: 48),
+                  child: CustomFilledButtom(
+                    text: "Login",
+                    function: () {
+                      final result = loginButtonLogic(
+                        usernameController.text,
+                        passwordConstroller.text,
+                      );
+                      if (result) {
+                        Navigator.of(context).pushAndRemoveUntil(
+                          CupertinoPageRoute(
+                            builder: (context) => const HomePage(),
+                          ),
+                          (route) => false,
+                        );
+                      } else {
+                        snackBar("Wrong credential", context);
+                      }
+                    },
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

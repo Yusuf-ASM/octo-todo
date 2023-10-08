@@ -23,7 +23,7 @@ class _IntroPageState extends State<IntroPage> {
       child: IntroductionScreen(
         pages: [
           PageViewModel(
-            image: Image.asset("assets/images/todo_list.png"),
+            image: Image.asset("assets/images/list.png"),
             title: "Manage your tasks",
             body: "You can easily manage all of your daily tasks",
             decoration: pageDecoration,

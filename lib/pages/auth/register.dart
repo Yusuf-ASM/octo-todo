@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:octo_todo/components/auth_textfield.dart';
 import 'package:octo_todo/components/filled_button.dart';
+import 'package:octo_todo/components/snackbar.dart';
+import 'package:octo_todo/pages/auth/logic/register.dart';
 import 'package:octo_todo/pages/auth/login.dart';
 
 final TextEditingController usernameController = TextEditingController();
@@ -43,13 +45,13 @@ class RegisterPage extends StatelessWidget {
                 ),
                 AuthTextField(
                   controller: passwordConstroller,
-                  password: false,
+                  password: true,
                   labelText: "Password",
                   hintText: "Enter your Password",
                 ),
                 AuthTextField(
-                  controller: passwordConstroller,
-                  password: false,
+                  controller: confirmPasswordConstroller,
+                  password: true,
                   labelText: "Confirm Password",
                   hintText: "Re-enter your Password",
                 ),
@@ -58,6 +60,11 @@ class RegisterPage extends StatelessWidget {
                   child: CustomFilledButtom(
                       text: "Register",
                       function: () {
+                        if (confirmPasswordConstroller.text == passwordConstroller.text) {
+                          registerButtonLogic(usernameController.text, passwordConstroller.text);
+                        } else {
+                          snackBar("password not equal", context);
+                        }
                       }),
                 ),
                 // const Row(
